@@ -98,6 +98,9 @@ span.backgroundHighlight2 {
 span.underline {
   border-bottom: 2px dashed #2c8a86;
 }
+p.error {
+  color: #e74c3c!important;
+}
 [class^="icon-"]:before,
 [class*=" icon-"]:before {
   display: none;

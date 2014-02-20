@@ -50,45 +50,45 @@ $('.plan').waypoint(function() {
    ---------------------------- */
 
 $(document).ready(function() {
-$('.lightbox').magnificPopup({
-  type: 'image',
+  $('.lightbox').magnificPopup({
+    type: 'image',
 
-  overflowY: 'auto',
+    overflowY: 'auto',
 
-  closeBtnInside: true,
-  preloader: false,
-  
-  midClick: true,
-  removalDelay: 100,
-  mainClass: 'my-mfp-slide-bottom',
+    closeBtnInside: true,
+    preloader: false,
+    
+    midClick: true,
+    removalDelay: 100,
+    mainClass: 'my-mfp-slide-bottom',
 
-  image: {
-    verticalFit: true
-  }
-});
+    image: {
+      verticalFit: true
+    }
+  });
 
-/*$('.modal-form').magnificPopup({
-  type: 'inline',
-  preloader: false,
-  focus: '#fullname',
-  midClick: true,
-  removalDelay: 300,
-  mainClass: 'my-mfp-slide-bottom',
+  $('.modal-form').magnificPopup({
+    type: 'inline',
+    preloader: false,
+    focus: '#fullname',
+    midClick: true,
+    removalDelay: 300,
+    mainClass: 'my-mfp-slide-bottom',
 
-  // When elemened is focused, some mobile browsers in some cases zoom in
-  // It looks not nice, so we disable it:
-  callbacks: {
-    beforeOpen: function() {
-      if($(window).width() < 700) {
-        this.st.focus = false;
-      } else {
-        this.st.focus = '#fullname';
+    // When elemened is focused, some mobile browsers in some cases zoom in
+    // It looks not nice, so we disable it:
+    callbacks: {
+      beforeOpen: function() {
+        if($(window).width() < 700) {
+          this.st.focus = false;
+        } else {
+          this.st.focus = '#fullname';
+        }
       }
     }
-  }
-});
+  });
 
-}); */
+}); 
 
 
 
@@ -96,7 +96,7 @@ $('.lightbox').magnificPopup({
 
 /* -- Bootstrap Popover
    ---------------------------- */
-$(function(){
+/*$(function(){
   $('.login').popover({
     html: true,
     placement: "bottom",
@@ -105,7 +105,7 @@ $(function(){
       return $('#login-form').html();
     }
   });
-});
+}); */
 
 
 

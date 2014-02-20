@@ -23,6 +23,7 @@ class Plan_model extends CI_Model {
             texts_per_month AS 'Included Texts', texts_cost_each AS 'Extra Text Cost', has_stock_control AS '*Stock Control', has_reports AS '*Reports', 
             has_pos AS '*POS', has_online_booking AS '*Online Booking', has_rewards AS '*Rewards Scheme', has_gift_cards AS '*Gift Cards'");
         $this->db->where('is_active', 1);
+        $this->db->where('is_visible', 1);
         $this->db->order_by('price', 'ASC');
         $q = $this->db->get('plans');
         return $q->result_array();

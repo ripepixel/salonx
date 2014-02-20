@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 19, 2014 at 04:40 PM
+-- Generation Time: Feb 20, 2014 at 04:28 PM
 -- Server version: 5.1.41
 -- PHP Version: 5.3.1
 
@@ -66,6 +66,56 @@ CREATE TABLE IF NOT EXISTS `businesses` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `employees`
+--
+
+CREATE TABLE IF NOT EXISTS `employees` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) NOT NULL,
+  `outlet_id` int(10) NOT NULL,
+  `is_manager` int(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `employees`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `outlets`
+--
+
+CREATE TABLE IF NOT EXISTS `outlets` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `business_id` int(6) NOT NULL,
+  `reference` varchar(255) DEFAULT NULL COMMENT 'a reference name for the outlet',
+  `business_name` varchar(255) NOT NULL,
+  `street` varchar(255) DEFAULT NULL,
+  `town` varchar(150) DEFAULT NULL,
+  `county` varchar(150) DEFAULT NULL,
+  `postcode` varchar(20) DEFAULT NULL,
+  `telephone` varchar(20) DEFAULT NULL,
+  `mobile` varchar(20) DEFAULT NULL,
+  `fax` varchar(20) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `website` varchar(255) DEFAULT NULL,
+  `twitter` varchar(40) DEFAULT NULL,
+  `facebook` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `outlets`
+--
+
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `payment_types`
 --
 
@@ -113,6 +163,7 @@ CREATE TABLE IF NOT EXISTS `plans` (
   `has_trial` int(1) NOT NULL DEFAULT '0',
   `trial_duration` int(3) DEFAULT NULL COMMENT 'Trial duration in days',
   `is_active` int(1) NOT NULL DEFAULT '0',
+  `is_visible` int(1) NOT NULL DEFAULT '1',
   `admin_user_id` int(3) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
@@ -122,10 +173,10 @@ CREATE TABLE IF NOT EXISTS `plans` (
 -- Dumping data for table `plans`
 --
 
-INSERT INTO `plans` (`id`, `name`, `tagline`, `price`, `months`, `is_featured`, `outlets`, `employees`, `clients`, `treatments`, `products`, `stations`, `suppliers`, `emails_per_month`, `texts_per_month`, `texts_cost_each`, `has_stock_control`, `has_reports`, `has_pos`, `has_online_booking`, `has_rewards`, `has_gift_cards`, `has_trial`, `trial_duration`, `is_active`, `admin_user_id`, `created_at`) VALUES
-(3, 'Salon', 'Complete solution for your salon', '24.99', 1, 1, 1, 5, 1000, 100, 100, 3, 10, 5, 100, '0.10', 1, 1, 1, 1, 1, 1, 1, 30, 1, 1, '2014-02-19 10:00:24'),
-(2, 'Solo', 'Ideal for mobile technicians', '12.99', 1, 0, 1, 1, 100, 20, 0, 0, 0, 0, 0, '0.10', 0, 0, 0, 0, 1, 0, 0, NULL, 1, 1, '2014-02-19 10:00:32'),
-(4, 'Chain', 'Great if you have more than 1 salon', '39.99', 1, 0, 5, 50, 10000, 500, 250, 25, 25, 30, 200, '0.08', 1, 1, 1, 1, 1, 1, 1, 30, 1, 1, '2014-02-19 10:01:21');
+INSERT INTO `plans` (`id`, `name`, `tagline`, `price`, `months`, `is_featured`, `outlets`, `employees`, `clients`, `treatments`, `products`, `stations`, `suppliers`, `emails_per_month`, `texts_per_month`, `texts_cost_each`, `has_stock_control`, `has_reports`, `has_pos`, `has_online_booking`, `has_rewards`, `has_gift_cards`, `has_trial`, `trial_duration`, `is_active`, `is_visible`, `admin_user_id`, `created_at`) VALUES
+(3, 'Salon', 'Complete solution for your salon', '24.99', 1, 1, 1, 5, 1000, 100, 100, 3, 10, 5, 100, '0.10', 1, 1, 1, 1, 1, 1, 1, 30, 1, 1, 1, '2014-02-19 10:00:24'),
+(2, 'Solo', 'Ideal for mobile technicians', '12.99', 1, 0, 1, 1, 100, 20, 0, 0, 0, 0, 0, '0.10', 0, 0, 0, 0, 1, 0, 0, NULL, 1, 1, 1, '2014-02-19 10:00:32'),
+(4, 'Chain', 'Great if you have more than 1 salon', '39.99', 1, 0, 5, 50, 10000, 500, 250, 25, 25, 30, 200, '0.08', 1, 1, 1, 1, 1, 1, 1, 30, 1, 1, 1, '2014-02-19 10:01:21');
 
 -- --------------------------------------------------------
 
@@ -161,18 +212,22 @@ CREATE TABLE IF NOT EXISTS `plan_orders` (
 
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `username` varchar(100) NOT NULL,
+  `username` varchar(100) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `is_manager` tinyint(1) NOT NULL DEFAULT '0',
   `is_employee` tinyint(1) NOT NULL DEFAULT '0',
   `is_client` tinyint(1) NOT NULL DEFAULT '0',
+  `plan_id` int(6) NOT NULL,
   `is_active` tinyint(1) NOT NULL DEFAULT '0',
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` int(30) NOT NULL,
+  `last_login` int(30) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `users`
 --
 
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `is_manager`, `is_employee`, `is_client`, `plan_id`, `is_active`, `created_at`, `last_login`) VALUES
+(1, NULL, 'contact@how-media.co.uk', '5f4dcc3b5aa765d61d8327deb882cf99', 1, 0, 0, 3, 1, 1392910091, 1392913676);

@@ -17,12 +17,14 @@
       </div>
 
       <div class="span6">
-            <form id="signup-form-page" class="white-page-block user-form">
+            <form id="signup-form-page" class="white-page-block user-form" action="<?php echo base_url(); ?>launch/signup_process" method="post">
               <h2>Sign up for an account</h2>
 
-              <input type="email" name="email" class="email" placeholder="Enter your email" maxlength="320" pattern="^[a-z0-9!#$%\x26'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%\x26'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" required />
+              <input type="email" name="email" class="email" placeholder="Enter your email" maxlength="320" pattern="^[a-z0-9!#$%\x26'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%\x26'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" required value="<?php echo set_value('email'); ?>" />
+              <?php if(form_error('email')) { echo form_error('email'); } ?>
            
-              <input type="password" placeholder="Enter your password" class="password" title="Can contain any character. The length may vary between seven and hundred characters" maxlength="100" pattern=".{7,100}" required />
+              <input type="password" name="password" placeholder="Enter your password" class="password" title="Can contain any character. The length may vary between seven and hundred characters" maxlength="100" pattern=".{7,100}" required />
+              <?php if(form_error('password')) { echo form_error('password'); } ?>
            
               <select name="plan">
                 <option value="" selected=selected>-- Select Plan --</option>
@@ -33,11 +35,12 @@
                 }
                 ?>
               </select>
+              <?php if(form_error('plan')) { echo form_error('plan'); } ?>
               
               <input type="submit" class="submit btn cta" value="Sign up" />
 
-              <div class="form-text">By clicking 'Sign up' you agree to the our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</div>
-              <div class="form-text">Already have an account? <a href="<?php echo base_url(); ?>launch/login">login here</a>.</div>
+              <div class="form-text">By clicking 'Sign up' you agree to the our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.<br />
+              Already have an account? <a href="<?php echo base_url(); ?>launch/login">login here</a>.</div>
                
             </form>
       </div>
