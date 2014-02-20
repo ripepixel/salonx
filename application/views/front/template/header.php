@@ -1,4 +1,22 @@
 <header class="animatedHeader">
+	
+				<?php
+					if ($this->session->flashdata('success')) {
+							echo '<div class="span6 offset5">';
+								echo "<div class='alert alert-success'>";
+									echo $this->session->flashdata('success');
+								echo "</div>";
+							echo "</div>";
+					}
+
+					if ($this->session->flashdata('error')) {
+							echo '<div class="span6 offset5">';
+								echo "<div class='alert alert-error'>";
+									echo $this->session->flashdata('error');
+								echo "</div>";
+							echo "</div>";
+					}
+				?>
 
           <div id="logo-wrapper">
             <a href="#home" class="btn btn-large cta logo"><?php echo $this->lang->line('common_site_name'); ?></a>

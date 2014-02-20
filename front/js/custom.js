@@ -67,7 +67,7 @@ $('.lightbox').magnificPopup({
   }
 });
 
-$('.modal-form').magnificPopup({
+/*$('.modal-form').magnificPopup({
   type: 'inline',
   preloader: false,
   focus: '#fullname',
@@ -88,7 +88,7 @@ $('.modal-form').magnificPopup({
   }
 });
 
-});
+}); */
 
 
 

@@ -18,12 +18,14 @@
 
       <div class="span6">
             <div class="">
-              <form id="login-form" class="user-form white-page-block">
+              <form id="login-form" class="user-form white-page-block" action="<?php echo base_url(); ?>launch/login_process" method="post">
                 <h2>Login to your account</h2>
                 
                 <input type="email" name="email" class="email" placeholder="Enter your email" maxlength="320" pattern="^[a-z0-9!#$%\x26'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%\x26'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$" required />
+<?php if(form_error('email')) { echo form_error('email'); } ?>
              
                 <input type="password" placeholder="Enter your password" class="password" title="Can contain any character. The length may vary between seven and hundred characters" maxlength="100" pattern=".{7,100}" required />
+<?php if(form_error('password')) { echo form_error('password'); } ?>
 
                 <input id="check1" type="checkbox" name="check" value="check1">
                 <label class="checkbox" for="check1">Keep me logged in</label>
