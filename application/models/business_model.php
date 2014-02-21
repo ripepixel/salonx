@@ -20,6 +20,17 @@ class Business_model extends CI_Model {
     	}
     }
 
+    function createBusiness($data)
+    {
+        $this->db->insert('businesses', $data);
+        $id = $this->db->insert_id();
+        if($id) {
+            return $id;
+        } else {
+            return FALSE;
+        }
+    }
+
 
 
 

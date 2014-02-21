@@ -25,6 +25,24 @@
 								echo "</div>";
 							echo "</div>";
 					}
+
+					if(isset($error_msg)) {
+						echo '<div class="col-md-8 col-md-offset-2">';
+							echo "<div class='alert alert-danger alert-dismissable'>";
+							echo '<button class="close" aria-hidden="true" data-dismiss="alert" type="button">x</button>';
+								echo $error_msg;
+							echo "</div>";
+						echo "</div>";
+					}
+
+					if(isset($success_msg)) {
+						echo '<div class="col-md-8 col-md-offset-2">';
+							echo "<div class='alert alert-success alert-dismissable'>";
+							echo '<button class="close" aria-hidden="true" data-dismiss="alert" type="button">x</button>';
+								echo $success_msg;
+							echo "</div>";
+						echo "</div>";
+					}
 				?>
             <?php $this->load->view($main); ?>
             </div>

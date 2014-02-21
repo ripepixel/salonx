@@ -58,7 +58,11 @@ class User_model extends CI_Model {
     function isManager()
     {
     	if(!$this->session->userdata('user_type') == 'manager') {
-    		redirect('launch/login');
+    		// if employee - redirect to outlet dashboard
+            // if client - redirect to client details dashboard
+
+            // else just redirect to login page
+            redirect('launch/login');
     	}
     }
 
@@ -74,6 +78,8 @@ class User_model extends CI_Model {
     		'created_at' => time()
     		);
     	$this->db->insert('users', $data);
+        $uid = $this->db->insert_id();
+        $this->createManagerPermissions($uid);
 
     	if($login) {
 	    	// send to validateUser to log them in
@@ -98,7 +104,41 @@ class User_model extends CI_Model {
     	return TRUE;
     }
 
-    
+    function getUserPlan($uid)
+    {
+        $this->db->where('id', $uid);
+        $q = $this->db->get('users');
+        $row = $q->row();
+
+        return $row->plan_id;
+    }
+
+
+    function hasPermission($uid, $function)
+    {
+        $this->db->where('user_id', $uid);
+        $this->db->where($function, 1);
+
+        $q = $this->db->get('user_permissions');
+        if($q->num_rows() == 1) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
+    function createManagerPermissions($uid)
+    {
+        // give the manager full permissions on creation of account
+        $data = array(
+            'user_id' => $uid,
+            'create_outlet' => 1,
+            'edit_outlet' => 1,
+            'delete_outlet' => 1
+            );
+        $this->db->insert('user_permissions', $data);
+        return TRUE;
+    }
 
 
 }

@@ -15,6 +15,7 @@ class Launch extends CI_Controller {
 		$this->form_validation->set_rules('password', 'Password', 'required|min_length[6]');
 		
 		if($this->form_validation->run() == false) {
+			$error_msg = "There were errors logging you in. Please check your email address and password are correct.";
 			$data['main'] = "front/launch/login";
 			$this->load->view('front/template/template', $data);
 		} else {
@@ -57,12 +58,13 @@ class Launch extends CI_Controller {
 		$this->form_validation->set_rules('plan','Plan','required|callback_check_default');
 
 		if($this->form_validation->run() == false) {
+			$error_msg = "There were errors creating your account.";
 			$data['main'] = "front/launch/signup";
 			$this->load->view('front/template/template', $data);
 		} else {
 			// create account
 			$email = $this->input->post('email');
-			$pass = $this->input->post('pass');
+			$pass = $this->input->post('password');
 			$sec_pass = md5($pass);
 			$plan_id = $this->input->post('plan');
 

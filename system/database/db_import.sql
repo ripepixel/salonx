@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 20, 2014 at 04:28 PM
+-- Generation Time: Feb 21, 2014 at 04:43 PM
 -- Server version: 5.1.41
 -- PHP Version: 5.3.1
 
@@ -47,21 +47,27 @@ CREATE TABLE IF NOT EXISTS `businesses` (
   `user_id` int(10) NOT NULL,
   `plan_id` int(6) NOT NULL,
   `business_name` varchar(255) NOT NULL,
-  `address` text,
+  `street` varchar(150) DEFAULT NULL,
+  `town` varchar(150) DEFAULT NULL,
+  `county` varchar(100) DEFAULT NULL,
+  `postcode` varchar(20) DEFAULT NULL,
   `telephone` varchar(20) DEFAULT NULL,
   `mobile` varchar(20) DEFAULT NULL,
   `fax` varchar(20) DEFAULT NULL,
   `website` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
   `is_active` int(1) NOT NULL DEFAULT '1',
   `is_deleted` int(1) NOT NULL DEFAULT '0',
   `created_at` int(30) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `businesses`
 --
 
+INSERT INTO `businesses` (`id`, `user_id`, `plan_id`, `business_name`, `street`, `town`, `county`, `postcode`, `telephone`, `mobile`, `fax`, `website`, `image`, `is_active`, `is_deleted`, `created_at`) VALUES
+(6, 6, 3, 'How Media', '142 Market Street', 'Bury', 'Lancashire', 'BL8 3LS', '01204 123456', '', '', '', NULL, 1, 0, 1393000939);
 
 -- --------------------------------------------------------
 
@@ -105,11 +111,32 @@ CREATE TABLE IF NOT EXISTS `outlets` (
   `twitter` varchar(40) DEFAULT NULL,
   `facebook` varchar(255) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
+  `user_id` int(10) NOT NULL,
+  `is_active` int(1) NOT NULL DEFAULT '1',
+  `created_at` int(30) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `outlets`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `outlet_access`
+--
+
+CREATE TABLE IF NOT EXISTS `outlet_access` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `outlet_id` int(10) NOT NULL,
+  `user_id` int(10) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `outlet_access`
 --
 
 
@@ -223,11 +250,34 @@ CREATE TABLE IF NOT EXISTS `users` (
   `created_at` int(30) NOT NULL,
   `last_login` int(30) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `is_manager`, `is_employee`, `is_client`, `plan_id`, `is_active`, `created_at`, `last_login`) VALUES
-(1, NULL, 'contact@how-media.co.uk', '5f4dcc3b5aa765d61d8327deb882cf99', 1, 0, 0, 3, 1, 1392910091, 1392913676);
+(6, NULL, 'contact@how-media.co.uk', '5f4dcc3b5aa765d61d8327deb882cf99', 1, 0, 0, 3, 1, 1393000906, 1393000906);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_permissions`
+--
+
+CREATE TABLE IF NOT EXISTS `user_permissions` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) NOT NULL,
+  `create_outlet` int(1) NOT NULL DEFAULT '0',
+  `edit_outlet` int(1) NOT NULL DEFAULT '0',
+  `delete_outlet` int(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `user_permissions`
+--
+
+INSERT INTO `user_permissions` (`id`, `user_id`, `create_outlet`, `edit_outlet`, `delete_outlet`) VALUES
+(2, 5, 1, 1, 1),
+(3, 6, 1, 1, 1);

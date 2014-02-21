@@ -6,6 +6,7 @@ class Manager extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
+		$this->load->model('Business_model');
 		$this->User_model->isValidated();
 		$this->User_model->isManager();
 	}
@@ -13,8 +14,7 @@ class Manager extends CI_Controller {
 
 	public function index()
 	{
-		// check if user has set-up a business
-		$this->load->model('Business_model');
+		// check if user has set-up a business		
 		if($this->Business_model->userHasBusiness($this->session->userdata('user_id'))) {
 			// get their outlets
 			// if 1 outlet - go to outlet dashboard
