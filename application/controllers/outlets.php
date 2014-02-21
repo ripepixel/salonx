@@ -14,6 +14,17 @@ class Outlets extends CI_Controller {
 	public function index()
 	{
 		// display all outlets for manager or redirect if only one - MANAGERS ONLY ACCESS
+		$data['outlets'] = $this->Outlet_model->getUserOutlets($this->session->userdata('user_id'));
+		$data['main'] = 'back/outlets/index';
+		$this->load->view('back/template/template', $data);
+	}
+	
+	public function dashboard()
+	{
+		// main outlet dashboard - single outlet
+		$data['outlet'] = $this->Outlet_model->getUserSingleOutlet($this->session->userdata('user_id'));
+		$data['main'] = 'back/outlets/dashboard';
+		$this->load->view('back/template/template', $data);
 	}
 
 

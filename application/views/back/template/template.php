@@ -4,7 +4,7 @@
         	
             <?php $this->load->view('back/template/top-nav'); ?>
 
-            <?php $this->load->view('back/template/sidebar-nav'); ?>
+            <?php //$this->load->view('back/template/sidebar-nav'); ?>
 
             <div id="page-wrapper">
             <?php

@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 3.2.0.1
+-- version 4.0.6
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 21, 2014 at 04:43 PM
--- Server version: 5.1.41
--- PHP Version: 5.3.1
+-- Generation Time: Feb 21, 2014 at 09:38 PM
+-- Server version: 5.5.33
+-- PHP Version: 5.5.3
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 --
 -- Database: `salonx`
@@ -19,7 +20,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- Table structure for table `admin_user`
 --
 
-CREATE TABLE IF NOT EXISTS `admin_user` (
+CREATE TABLE `admin_user` (
   `id` int(3) NOT NULL AUTO_INCREMENT,
   `username` varchar(100) NOT NULL,
   `email` varchar(255) NOT NULL,
@@ -42,7 +43,7 @@ INSERT INTO `admin_user` (`id`, `username`, `email`, `password`, `is_superadmin`
 -- Table structure for table `businesses`
 --
 
-CREATE TABLE IF NOT EXISTS `businesses` (
+CREATE TABLE `businesses` (
   `id` int(6) NOT NULL AUTO_INCREMENT,
   `user_id` int(10) NOT NULL,
   `plan_id` int(6) NOT NULL,
@@ -75,7 +76,7 @@ INSERT INTO `businesses` (`id`, `user_id`, `plan_id`, `business_name`, `street`,
 -- Table structure for table `employees`
 --
 
-CREATE TABLE IF NOT EXISTS `employees` (
+CREATE TABLE `employees` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `user_id` int(10) NOT NULL,
   `outlet_id` int(10) NOT NULL,
@@ -83,18 +84,13 @@ CREATE TABLE IF NOT EXISTS `employees` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `employees`
---
-
-
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `outlets`
 --
 
-CREATE TABLE IF NOT EXISTS `outlets` (
+CREATE TABLE `outlets` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `business_id` int(6) NOT NULL,
   `reference` varchar(255) DEFAULT NULL COMMENT 'a reference name for the outlet',
@@ -117,28 +113,18 @@ CREATE TABLE IF NOT EXISTS `outlets` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
---
--- Dumping data for table `outlets`
---
-
-
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `outlet_access`
 --
 
-CREATE TABLE IF NOT EXISTS `outlet_access` (
+CREATE TABLE `outlet_access` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `outlet_id` int(10) NOT NULL,
   `user_id` int(10) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
-
---
--- Dumping data for table `outlet_access`
---
-
 
 -- --------------------------------------------------------
 
@@ -146,17 +132,12 @@ CREATE TABLE IF NOT EXISTS `outlet_access` (
 -- Table structure for table `payment_types`
 --
 
-CREATE TABLE IF NOT EXISTS `payment_types` (
+CREATE TABLE `payment_types` (
   `id` int(2) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `is_active` int(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `payment_types`
---
-
 
 -- --------------------------------------------------------
 
@@ -164,7 +145,7 @@ CREATE TABLE IF NOT EXISTS `payment_types` (
 -- Table structure for table `plans`
 --
 
-CREATE TABLE IF NOT EXISTS `plans` (
+CREATE TABLE `plans` (
   `id` int(6) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `tagline` varchar(255) DEFAULT NULL,
@@ -201,9 +182,9 @@ CREATE TABLE IF NOT EXISTS `plans` (
 --
 
 INSERT INTO `plans` (`id`, `name`, `tagline`, `price`, `months`, `is_featured`, `outlets`, `employees`, `clients`, `treatments`, `products`, `stations`, `suppliers`, `emails_per_month`, `texts_per_month`, `texts_cost_each`, `has_stock_control`, `has_reports`, `has_pos`, `has_online_booking`, `has_rewards`, `has_gift_cards`, `has_trial`, `trial_duration`, `is_active`, `is_visible`, `admin_user_id`, `created_at`) VALUES
-(3, 'Salon', 'Complete solution for your salon', '24.99', 1, 1, 1, 5, 1000, 100, 100, 3, 10, 5, 100, '0.10', 1, 1, 1, 1, 1, 1, 1, 30, 1, 1, 1, '2014-02-19 10:00:24'),
-(2, 'Solo', 'Ideal for mobile technicians', '12.99', 1, 0, 1, 1, 100, 20, 0, 0, 0, 0, 0, '0.10', 0, 0, 0, 0, 1, 0, 0, NULL, 1, 1, 1, '2014-02-19 10:00:32'),
-(4, 'Chain', 'Great if you have more than 1 salon', '39.99', 1, 0, 5, 50, 10000, 500, 250, 25, 25, 30, 200, '0.08', 1, 1, 1, 1, 1, 1, 1, 30, 1, 1, 1, '2014-02-19 10:01:21');
+(3, 'Salon', 'Complete solution for your salon', 24.99, 1, 1, 1, 5, 1000, 100, 100, 3, 10, 5, 100, 0.10, 1, 1, 1, 1, 1, 1, 1, 30, 1, 1, 1, '2014-02-19 10:00:24'),
+(2, 'Solo', 'Ideal for mobile technicians', 12.99, 1, 0, 1, 1, 100, 20, 0, 0, 0, 0, 0, 0.10, 0, 0, 0, 0, 1, 0, 0, NULL, 1, 1, 1, '2014-02-19 10:00:32'),
+(4, 'Chain', 'Great if you have more than 1 salon', 39.99, 1, 0, 5, 50, 10000, 500, 250, 25, 25, 30, 200, 0.08, 1, 1, 1, 1, 1, 1, 1, 30, 1, 1, 1, '2014-02-19 10:01:21');
 
 -- --------------------------------------------------------
 
@@ -211,7 +192,7 @@ INSERT INTO `plans` (`id`, `name`, `tagline`, `price`, `months`, `is_featured`, 
 -- Table structure for table `plan_orders`
 --
 
-CREATE TABLE IF NOT EXISTS `plan_orders` (
+CREATE TABLE `plan_orders` (
   `id` int(6) NOT NULL AUTO_INCREMENT,
   `business_id` int(6) NOT NULL,
   `plan_id` int(6) NOT NULL,
@@ -226,18 +207,13 @@ CREATE TABLE IF NOT EXISTS `plan_orders` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `plan_orders`
---
-
-
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `users`
 --
 
-CREATE TABLE IF NOT EXISTS `users` (
+CREATE TABLE `users` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `username` varchar(100) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
@@ -257,7 +233,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `is_manager`, `is_employee`, `is_client`, `plan_id`, `is_active`, `created_at`, `last_login`) VALUES
-(6, NULL, 'contact@how-media.co.uk', '5f4dcc3b5aa765d61d8327deb882cf99', 1, 0, 0, 3, 1, 1393000906, 1393000906);
+(6, NULL, 'contact@how-media.co.uk', '5f4dcc3b5aa765d61d8327deb882cf99', 1, 0, 0, 3, 1, 1393000906, 1393012879);
 
 -- --------------------------------------------------------
 
@@ -265,7 +241,7 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `is_manager`, `is_em
 -- Table structure for table `user_permissions`
 --
 
-CREATE TABLE IF NOT EXISTS `user_permissions` (
+CREATE TABLE `user_permissions` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `user_id` int(10) NOT NULL,
   `create_outlet` int(1) NOT NULL DEFAULT '0',

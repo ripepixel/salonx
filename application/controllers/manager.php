@@ -7,6 +7,7 @@ class Manager extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('Business_model');
+		$this->load->model('Outlet_model');
 		$this->User_model->isValidated();
 		$this->User_model->isManager();
 	}
@@ -17,8 +18,14 @@ class Manager extends CI_Controller {
 		// check if user has set-up a business		
 		if($this->Business_model->userHasBusiness($this->session->userdata('user_id'))) {
 			// get their outlets
-			// if 1 outlet - go to outlet dashboard
-			// if > 1 outlet - display outlets 
+			$outlets = $this->Outlet_model->getUserOutlets($this->session->userdata('user_id'));
+			// if > 1 outlet - go to main dashboard
+			if(count($outlets) > 1) {
+				redirect('outlets/');
+			} else {
+				// redirect to single outlet dashboard
+				redirect('outlets/dashboard');
+			}
 		} else {
 			$this->session->set_flashdata('error', 'You need to add your business details first');
 			redirect('businesses/create');

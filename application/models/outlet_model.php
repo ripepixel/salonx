@@ -14,6 +14,20 @@ class Outlet_model extends CI_Model {
    		return $q->row();
    }
 
+	function getUserOutlets($uid)
+	{
+		$this->db->where('user_id', $uid);
+		$q = $this->db->get('outlets');
+		return $q->result_array();
+	}
+	
+	function getUserSingleOutlet($uid)
+	{
+		$this->db->where('user_id', $uid);
+		$q = $this->db->get('outlets');
+		return $q->row();
+	}
+
 
     function createOutlet($data)
     {

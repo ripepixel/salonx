@@ -20,6 +20,13 @@ class Business_model extends CI_Model {
     	}
     }
 
+	function getUserBusiness($uid)
+	{
+		$this->db->where('user_id', $uid);
+		$q = $this->db->get('businesses');
+		return $q->row();
+	}
+
     function createBusiness($data)
     {
         $this->db->insert('businesses', $data);

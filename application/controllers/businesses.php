@@ -20,8 +20,14 @@ class Businesses extends CI_Controller {
 
 	public function create()
 	{
-		$data['main'] = 'back/businesses/create';
-		$this->load->view('back/template/template', $data);
+		// if has a business - redirect to edit
+		if($this->Business_model->userHasBusiness($this->session->userdata('user_id'))) {
+			redirect('businesses/edit');
+		} else {
+			$data['main'] = 'back/businesses/create';
+			$this->load->view('back/template/template', $data);
+		}
+		
 	}
 
 	public function create_business()
@@ -93,6 +99,13 @@ class Businesses extends CI_Controller {
 			
 		}
 
+	}
+	
+	public function edit()
+	{
+		$data['business'] = $this->Business_model->getUserBusiness($this->session->userdata('user_id'));
+		$data['main'] = 'back/businesses/edit';
+		$this->load->view('back/template/template', $data);
 	}
 
 

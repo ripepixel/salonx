@@ -11,7 +11,27 @@
                 <!-- /.navbar-header -->
 
                 <ul class="nav navbar-top-links navbar-right">
-                    <li class="dropdown">
+                    <li>
+                    	<a href="#">
+                            <i class="fa fa-dashboard fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+					<li>
+                    	<a href="#">
+                            <i class="fa fa-calendar fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+					<li>
+                    	<a href="#">
+                            <i class="fa fa-users fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+					<li>
+                    	<a href="#">
+                            <i class="fa fa-shopping-cart fa-2x fa-fw"></i>
+                        </a>
+                    </li>
+					<li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             <i class="fa fa-envelope fa-2x fa-fw"></i>
                         </a>
