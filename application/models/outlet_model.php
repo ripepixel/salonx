@@ -36,6 +36,13 @@ class Outlet_model extends CI_Model {
     	return $id;
     }
 
+		function updateOutlet($id, $data)
+		{
+			$this->db->where('id', $id);
+			$this->db->update('outlets', $data);
+			return TRUE;
+		}
+
     function addOutletAccess($oid, $uid)
     {
     	$data = array(

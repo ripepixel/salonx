@@ -13,7 +13,7 @@
 	        					<div class="form-group">
 	        						<label>Reference</label>
 	        						<input type="text" class="form-control" name="reference" value="<?php echo $outlet->reference; ?>" />
-	        						<p class="help-block">This can be anything to give you a quick reminder of which outlet it is (eg, Spring Road Salon)</p>
+	        						<p class="help-block">You can give your outlet a reference for easier identification. Useful if you have multiple salons.</p>
 	        						<?php if(form_error('reference')) { echo form_error('reference'); } ?>
 	        					</div>
 	        					<div class="form-group">
@@ -62,6 +62,7 @@
 	        						<input type="text" class="form-control" name="website" value="<?php echo $outlet->website; ?>" />
 	        						<?php if(form_error('website')) { echo form_error('website'); } ?>
 	        					</div>
+										<input type="hidden" name="outlet_id" value="<?php echo $outlet->id; ?>" />
 	        					<div class="form-group">
 	        						<button class="btn btn-primary" type="submit">Update</button>
 	        					</div>

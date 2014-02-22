@@ -2,15 +2,18 @@ $('document').ready(function() {
 
     $('#side-menu').metisMenu();
 
+	// fade out success messages
+	$('.fadeout').fadeOut(4000);
+
 //Loads the correct sidebar on window load
     $(function() {
 
         $(window).bind("load", function() {
             console.log($(this).width())
             if ($(this).width() < 753) {
-                $('div.sidebar-collapse').addClass('collapse')
+                $('.navbar-top-links').addClass('collapse')
             } else {
-                $('div.sidebar-collapse').removeClass('collapse')
+                $('.navbar-top-links').removeClass('collapse')
             }
         })
     })
@@ -21,9 +24,9 @@ $('document').ready(function() {
         $(window).bind("resize", function() {
             console.log($(this).width())
             if (this.innerWidth < 768) {
-                $('div.sidebar-collapse').addClass('collapse')
+                $('.navbar-top-links').addClass('collapse')
             } else {
-                $('div.sidebar-collapse').removeClass('collapse')
+                $('.navbar-top-links').removeClass('collapse')
             }
         })
     });
@@ -39,7 +42,6 @@ $('document').ready(function() {
         }
     });
 
-
-
+	
 });
 

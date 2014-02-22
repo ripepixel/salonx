@@ -68,6 +68,9 @@
 	        				</form>
 	        			</div>
         			</div>
+							<div class="col-lg-6">
+								<p>Please enter your business details.</p>
+							</div>
         		</div>
         	</div>
         </div>

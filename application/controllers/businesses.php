@@ -83,7 +83,7 @@ class Businesses extends CI_Controller {
 					$this->Outlet_model->addOutletAccess($outlet_id, $this->session->userdata('user_id'));
 
 					// send to edit outlet
-					$this->session->set_flashdata('success', 'Great, your business and outlet has been created.');
+					$this->session->set_flashdata('success', 'Great, your business and outlet has been created. You can edit your outlet below.');
 					redirect('outlets/edit/'.$outlet_id);
 				}
 

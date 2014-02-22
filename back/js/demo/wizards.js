@@ -4,7 +4,7 @@ $(function() {
 
     $("#wizard1").formwizard({
         formPluginEnabled: false,
-        validationEnabled: false,
+        validationEnabled: true,
         focusFirstInput: false,
         disableUIStyles: true
     });

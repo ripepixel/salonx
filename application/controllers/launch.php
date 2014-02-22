@@ -32,7 +32,7 @@ class Launch extends CI_Controller {
 					redirect('manager/');
 				} elseif ($user_type == 'employee') {
 					// send to outlet
-					redirect('outlets/');
+					redirect('outlets/dashboard');
 				} elseif ($user_type == 'client') {
 					// send to client dashboard
 				}

@@ -891,13 +891,19 @@ svg {
   width: 100% !important; }
 
 .navbar-brand {
-  padding: 0;
+  /*padding: 0;*/
+	padding-top: 10px;
   height: 90px;
-  line-height: 90px;
+  /*line-height: 90px;*/
   text-align: center; }
   @media (max-width: 768px) {
     .navbar-brand {
       padding-left: 20px; } }
+
+#time {
+	margin-top: 10px;
+	font-size: 18px;
+}
 
 .brand-logo {
   margin-top: -7px;
