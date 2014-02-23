@@ -53,6 +53,16 @@ class Outlet_model extends CI_Model {
     	return TRUE;
     }
 
+		function createOutletAccess($oid, $uid)
+    {
+    	$data = array(
+    		'outlet_id' => $oid,
+    		'user_id' => $uid
+    		);
+    	$this->db->insert('outlet_access', $data);
+    	return TRUE;
+    }
+
     function userHasAccess($oid, $uid)
     {
     	$this->db->where('outlet_id', $oid);

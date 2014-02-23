@@ -2,6 +2,7 @@
         <script src="<?php echo base_url(); ?>back/js/bootstrap.min.js"></script>
         <script src="<?php echo base_url(); ?>back/js/plugins/metisMenu/jquery.metisMenu.js"></script>
         <script src="<?php echo base_url(); ?>back/js/main-admin.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 
 				<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 				<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>

@@ -2,12 +2,52 @@ $(function() {
     
     //===== Form wizards =====//
 
-    $("#wizard1").formwizard({
+    $("#new_employee_form").formwizard({
         formPluginEnabled: false,
         validationEnabled: true,
         focusFirstInput: false,
         disableUIStyles: true
     });
+
+	$(function() {
+    	$( "#dob" ).datepicker({
+      		changeMonth: true,
+      		changeYear: true,
+			dateFormat: 'dd-mm-yy',
+			yearRange: "-70:-12"
+    	});
+  	});
+
+	$(function() {
+    	$( "#start_date" ).datepicker({
+      		changeMonth: true,
+      		changeYear: true,
+			dateFormat: 'dd-mm-yy',
+			yearRange: "-70:+0"
+    	});
+  	});
+
+	
+	$("#copy_times").click(copyTime);
+	         function copyTime()
+	         {
+	               var start=$("#monday_start").val();
+					var finish=$("#monday_finish").val();
+	               if (this.checked==true) {
+	        			$("#tuesday_start").val(start);
+						$("#tuesday_finish").val(finish);
+						$("#wednesday_start").val(start);
+						$("#wednesday_finish").val(finish);
+						$("#thursday_start").val(start);
+						$("#thursday_finish").val(finish);
+						$("#friday_start").val(start);
+						$("#friday_finish").val(finish);
+						$("#saturday_start").val(start);
+						$("#saturday_finish").val(finish);
+						$("#sunday_start").val(start);
+						$("#sunday_finish").val(finish);
+					}
+	}
 
     $("#wizard2").formwizard({
         formPluginEnabled: true,

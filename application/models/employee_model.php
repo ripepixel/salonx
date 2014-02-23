@@ -20,6 +20,13 @@ class Employee_model extends CI_Model {
     	}
     }
 
+		function getEmployeeDetails($id)
+		{
+			$this->db->where('employee_id', $id);
+			$q = $this->db->get('employee_details');
+			return $q->row();
+		}
+
 		function getEmployees($uid)
 		{
 			// get business id
@@ -31,6 +38,24 @@ class Employee_model extends CI_Model {
 			$this->db->where('business_id', $row->id);
 			$qry = $this->db->get('employees');
 			return $qry->result_array();
+		}
+		
+		function createEmployee($data)
+		{
+			$this->db->insert('employees', $data);
+			return $this->db->insert_id();
+		}
+		
+		function createEmployeeDetails($data)
+		{
+			$this->db->insert('employee_details', $data);
+			return TRUE;
+		}
+		
+		function createEmployeeHours($data)
+		{
+			$this->db->insert('employee_hours', $data);
+			return TRUE;
 		}
 
 

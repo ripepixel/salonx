@@ -66,7 +66,14 @@ class User_model extends CI_Model {
     	}
     }
 
-    function createManagerUser($email, $pass, $plan, $login = NULL)
+		function createEmployeeUser($data)
+		{
+			$this->db->insert('users', $data);
+      $uid = $this->db->insert_id();
+			return $uid;
+		}
+    
+		function createManagerUser($email, $pass, $plan, $login = NULL)
     {
     	// create the user
     	$data = array(
@@ -78,8 +85,8 @@ class User_model extends CI_Model {
     		'created_at' => time()
     		);
     	$this->db->insert('users', $data);
-        $uid = $this->db->insert_id();
-        $this->createManagerPermissions($uid);
+      $uid = $this->db->insert_id();
+      $this->createManagerPermissions($uid);
 
     	if($login) {
 	    	// send to validateUser to log them in

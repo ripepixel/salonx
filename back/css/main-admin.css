@@ -913,6 +913,14 @@ svg {
 .large-error {
   font-size: 72px; }
 
+label.error {
+	color: #e74c3c;
+}
+
+input[type=text].error, input[type=password].error {
+	border-color: #e74c3c;
+}
+
 .fontawesome-icon-list {
   line-height: 200%; }
 
