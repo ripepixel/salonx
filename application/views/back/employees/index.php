@@ -13,18 +13,33 @@
 						</div>
     				<?php
     				if($employees) { ?>
-							<div class="col-lg-6">
-							<?php foreach($employees as $employee) {
-								$emp = $this->Employee_model->getEmployeeDetails($employee['id']);
-							?>
-							<p><?php echo $emp->first_name; ?> <?php echo $emp->surname; ?></p>
-						<?php 
-							} ?>
-							</div>
+    					<div class="table responsive col-lg-12">
+    						<table class="table table-striped table-bordered table-hover">
+    							<thead>
+    								<tr>
+    									<th>First Name</th>
+    									<th>Last Name</th>
+    									<th>Actions</th>
+    								</tr>
+    							</thead>
+    							<tbody>
+								<?php foreach($employees as $employee) {
+									$emp = $this->Employee_model->getEmployeeDetails($employee['id']);
+									echo "<tr>";
+									echo "<td>".$emp->first_name."</td>";
+									echo "<td>".$emp->surname."</td>";
+									echo "<td>Edit | Delete</td>";
+									echo "</tr>";
+								?>
+							
+								<?php 
+								} ?>
+								</tbody>
+							</table>
+						</div>
 						<?php 
 						} else { ?>
 							<div class="col-lg-6">
-								<p><a href="<?php echo base_url(); ?>employees/create" class="btn btn-social btn-primary"><i class="fa fa-plus"> New Employee</i></a></p>
 								<p>You have no employees to display. <a href="<?php echo base_url(); ?>employees/create">Why not create one now</a>.</p>
 							</div>							
 						<?php

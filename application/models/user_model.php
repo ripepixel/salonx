@@ -120,6 +120,15 @@ class User_model extends CI_Model {
         return $row->plan_id;
     }
 
+    function getUserBusiness($uid)
+    {
+        $this->db->where('id', $uid);
+        $q = $this->db->get('businesses');
+        $row = $q->row();
+
+        return $row->id;
+    }
+
 
     function hasPermission($uid, $function)
     {
@@ -145,6 +154,27 @@ class User_model extends CI_Model {
             );
         $this->db->insert('user_permissions', $data);
         return TRUE;
+    }
+
+    function checkCanCreate($table, $field, $uid)
+    {
+        $bus_id = $this->getUserBusiness($uid);
+        $plan_id = $this->getUserPlan($uid);
+
+        $this->db->where('business_id', $bus_id);
+        $q = $this->db->get($table);
+        $count = $q->num_rows();
+
+        $this->db->where('id', $plan_id);
+        $q = $this->db->get('plans');
+        $plan = $q->row();
+
+        if(($count+1) > $plan->$field) {
+            return FALSE;
+        } else {
+            return TRUE;
+        }
+
     }
 
 

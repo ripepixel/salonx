@@ -29,15 +29,20 @@ class Employees extends CI_Controller {
 	public function create()
 	{
 		// check if have enough space to create new employee
-		
-		if($this->User_model->hasPermission($this->session->userdata('user_id'), "create_employee")) {
-			$this->load->model('Outlet_model');
-			$data['main'] = 'back/employees/create';
-			$this->load->view('back/template/template', $data);
-		} else {
-			// redirect to outlet dashboard
-			$this->session->set_flashdata('error', 'Sorry, you do not have permission to do that.');
+		if($this->User_model->checkCanCreate('employees', 'employees', $this->session->userdata('user_id')) == FALSE) {
+			$this->session->set_flashdata('error', 'Sorry, you have reached the maximum amount you can create.');
 			redirect('employees/');
+		} else {
+		
+			if($this->User_model->hasPermission($this->session->userdata('user_id'), "create_employee")) {
+				$this->load->model('Outlet_model');
+				$data['main'] = 'back/employees/create';
+				$this->load->view('back/template/template', $data);
+			} else {
+				// redirect to outlet dashboard
+				$this->session->set_flashdata('error', 'Sorry, you do not have permission to do that.');
+				redirect('employees/');
+			}
 		}
 	}
 	
@@ -91,7 +96,7 @@ class Employees extends CI_Controller {
 			// create outlet access
 			$this->load->model('Outlet_model');
 			$oid = $this->input->post('outlet_id');
-			$this->Outlet_model->addOutletAccess($oid, $uid);
+			$this->Outlet_model->createOutletAccess($oid, $uid);
 			// create employee hours
 			$data = array(
 				'employee_id' => $emp_id,
@@ -111,6 +116,15 @@ class Employees extends CI_Controller {
 				'sunday_finish' => $this->input->post('sunday_finish')
 			);
 			$this->Employee_model->createEmployeeHours($data);
+			// create employee pay rate
+			$data = array(
+				'employee_id' => $emp_id,
+				'hourly_rate' => $this->input->post('hourly_rate'),
+				'treatment_commission' => $this->input->post('treatment_commission'),
+				'product_commission' => $this->input->post('product_commission'),
+				'start_date' => time(),
+				);
+			$this->Employee_model->createEmployeePay($data);
 			
 			$this->session->set_flashdata('success', 'The employee has been created successfully.');
 			redirect('employees/');

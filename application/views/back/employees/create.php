@@ -34,7 +34,7 @@
 										<div class="form-group">
 											<?php $outlets = $this->Outlet_model->getUserOutlets($this->session->userdata('user_id')); ?>
 	                       <label>Outlet</label>
-												<select class="form-control" name="outlet">
+												<select class="form-control" name="outlet_id">
 											<?php foreach($outlets as $outlet) { 
 												$outlet_name = ($outlet['reference']) ? $outlet['reference'] : $outlet['business_name'];
 											?>
@@ -276,6 +276,43 @@
           </div>
       </div>
   </fieldset>
+<fieldset class="step ui-formwizard-content" id="step4" style="display: block;">
+   	<div>
+        <h3 class="margin-top-none">
+            <span class="label label-primary">Step 4</span>
+            Employee Pay
+        </h3>
+   	</div>
+    <div class="margin-top">
+    <div class="col-md-12">
+        <div class="row">
+			<div class="form-group">
+                <div class="col-md-6">
+                <label>Hourly Pay Rate</label>
+                <input type="text" class="form-control" name="hourly_rate" required />
+				</div>
+          	</div>
+      	</div>
+
+      	<div class="row">
+			<div class="form-group">
+                <div class="col-md-6">
+                <label>Commission Rate For Treatments</label>
+                <input type="text" class="form-control" name="treatment_commission" />
+				</div>
+          	</div>
+      	</div>
+
+      	<div class="row">
+			<div class="form-group">
+                <div class="col-md-6">
+                <label>Commission Rate For Products</label>
+                <input type="text" class="form-control" name="product_commission" />
+				</div>
+          	</div>
+      	</div>
+    </div>
+</fieldset>
 	       <div class="form-actions">
 	           <input class="btn ui-wizard-content ui-formwizard-button" id="back-1" value="Back" type="reset" disabled="disabled">
 	           <input type="submit" class="btn btn-primary ui-wizard-content ui-formwizard-button" id="next-1" value="Next">

@@ -59,7 +59,11 @@ class Employee_model extends CI_Model {
 		}
 
 
-
+		function createEmployeePay($data)
+		{
+			$this->db->insert('employee_pay_rate', $data);
+			return TRUE;
+		}
 
 
 
